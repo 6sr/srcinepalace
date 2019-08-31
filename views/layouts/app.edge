@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cine Palace</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ============================================================================================================= -->
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">  <!-- For Search glyphicon-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/index.css">
+    <!-- ============================================================================================================= -->
+
+    @!section('styles')
+
+</head>
+<body>
+    <!-- ============================================================================================================= -->
+    <!-- Search Bar Starts-->
+    <div id="down"></div>
+    <div class="scrollmenu" id="navbar">
+        <form class="form-inline" action="/search" method="GET" id = "searchForm">
+            <input type="text" class="form-control" name="searchQuery" autocomplete="off" placeholder="Search" >
+            <button class="btn" type="submit"style="color:black;background-color:white;">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </form>
+    </div>
+    <!-- Search Bar Ends -->
+    <!-- ============================================================================================================= -->
+
+@!section('carousel')
+
+    <!-- ============================================================================================================= -->
+    <!-- Navbar Starts -->
+    <div class="scrollmenu" id="navbar">
+        <a href="/">Home</a>
+        <a href="/movies">Movies</a>
+        <a href="/cinemahalls">Cinema Halls</a>
+        <a href="/aboutus">About</a>
+        <a href="/support">Support</a>
+        @if(!auth)
+        <a href="/signin">Sign In</a>
+        <a href="/signup">Sign Up</a>
+        @else
+        <a href="/signout">Sign Out</a>
+        @endif
+        @!section('navlinks')
+    </div>
+    <!-- Navbar Ends -->
+    <!-- ============================================================================================================= -->
+
+@!section('content')
+
+
+    <!-- ============================================================================================================= -->
+    <!-- Footer Starts -->
+    <br>
+    <footer>
+        <h2 style="margin-left: 50%">Footer</h2>
+    </footer>
+    <!-- Footer Ends -->
+    <!-- ============================================================================================================= -->
+
+    <!-- ============================================================================================================= -->
+    <!-- Bounce Arrow -->
+    <a href="#down">
+        <i class="fas fa-angle-double-up" id = "bounceDoubleArrow" style="font-size:2em;"></i>
+    </a>
+    <!-- ============================================================================================================= -->
+
+    <!-- ============================================================================================================= -->
+    <!-- JS Files -->
+    <script  src="/js/index.js"></script>
+    <!-- ============================================================================================================= -->
+
+
+@!section('scripts')
+
+</body>
+</html>

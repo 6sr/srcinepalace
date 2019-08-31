@@ -1,0 +1,35 @@
+@layout('layouts.app')
+
+
+@section('content')
+
+    <!-- ============================================================================================================= -->
+    <!-- Container for Flip Cards -->
+    <div class="container-fluid">
+        <br>
+        <strong style="font-size: 25px">Movies</strong>
+        @if(Movies.length > 0)
+        <div class="row">
+            @each(movie in Movies)
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{{ movie.posterImage }}" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>{{ movie.name }}</h1> 
+                        <p>{{ movie.director }}</p> 
+                        <p>{{ movie.language }}</p>
+                        <button class="btn btn-default"><a href="/movies/{{ movie._id }}">Know More</a></button>
+                    </div>
+                </div>
+            </div>
+            @endeach
+        </div>
+        @endif
+
+    
+    </div>
+    <!-- Container for Flip Cards Ends -->
+    <!-- ============================================================================================================= -->
+    @endsection

@@ -1,0 +1,65 @@
+@layout('layouts.app')
+
+
+@section('content')
+
+    <!-- ============================================================================================================= -->
+    <!-- Container for Flip Cards -->
+    <div class="container-fluid">
+        <br>
+        <strong style="font-size: 25px">Book Tickets</strong>
+        <div class="row">
+        </div>
+    
+    </div>
+    <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+        
+        
+                    <!-- <form action="/users/register" method="POST" enctype="multipart/form-data">  -->
+                    <form action="/users/book" method="POST"> 
+                            <!-- encType Tells that multimedia is encrypted and sent to server -->
+                        <input type="text" name="movieshow_id" value="{{ showId }}" style="display: none">
+                        <table>
+                            <tr>
+                                <td></td>
+                                @each(i in loopSeatNum)
+                                @if(i < 20)
+                                    {{-- Vertical Numbering --}}
+                                    <td> {{ i + 1 }} </td>
+                                @endif
+                                @endeach
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                @each(i in loopSeatNum)
+                                    @if(alreadyBooked.includes(i + 1))
+                                        <td><input type="checkbox" name="seats" value="{{i + 1}}" disabled></td>
+                                    @else
+                                        <td><input type="checkbox" name="seats" value="{{i + 1}}"></td>
+                                    @endif
+
+                                    @if((i + 1) % 20 == 0)
+                                        @if(i < 99)
+                                            {{-- Not printing for last row as it exceeds table --}}
+                                            </tr><tr>
+                                                {{-- Horizontal Numbering --}}
+                                                <td>{{( i + 1) / 20 + 1}}</td>
+                                        @endif
+                                    @endif
+                                @endeach
+                            </tr>
+                        </table>
+
+                        <div class="form-group my-4 text-center">
+                            <button class="btn btn-primary">Book Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <!-- Container Ends -->
+    <!-- ============================================================================================================= -->
+
+@endsection

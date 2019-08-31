@@ -1,0 +1,51 @@
+@layout('layouts.app')
+
+
+@section('content')
+
+    <!-- ============================================================================================================= -->
+    <!-- Container for Flip Cards -->
+    <div class="container-fluid">
+        <br>
+        <strong style="font-size: 25px">Sign In</strong>
+        <div class="row">
+        </div>
+    
+    </div>
+    <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+        
+        
+                    <!-- <form action="/users/register" method="POST" enctype="multipart/form-data">  -->
+                    <form action="/users/signin" method="POST"> 
+                            <!-- encType Tells that multimedia is encrypted and sent to server -->
+                            
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Email</label>
+                                <input type="email" name="email" autocomplete="username" class="form-control" placeholder="Email ...">
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Password</label>
+                                <input type="password" name="password" autocomplete="current-password" class="form-control" placeholder="Password ...">
+                            </div>
+                        </div>
+                        <hr>
+                    
+                        <div class="form-group my-4 text-center">
+                            <button class="btn btn-primary">Sign In</button>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+            </div>
+        </div>
+            <!-- Container for Flip Cards Ends -->
+    <!-- ============================================================================================================= -->
+
+@endsection

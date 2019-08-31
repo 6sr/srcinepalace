@@ -1,0 +1,133 @@
+@layout('layouts.app')
+
+
+@section('carousel')
+
+    <!-- ============================================================================================================= -->
+    <!-- Carousel Starts -->
+    <div id="demo" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+  
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/Images/1.jpg" alt="Los Angeles" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img src="/Images/2.jpg" alt="Chicago" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img src="/Images/3.jpg" alt="New York" width="1100" height="500">
+            </div>
+        </div>
+  
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    <!-- Carousel Ends -->
+    <!-- ============================================================================================================= -->
+@endsection
+
+@section('navlinks')
+    @if(nowShowingMovies.length > 0)
+        <a href="#now">Now Showing</a>
+    @endif
+
+    @if(comingSoonMovies.length > 0)
+        <a href="#soon">Coming Soon</a>
+    @endif
+@endsection
+
+@section('content')
+    <!-- ============================================================================================================= -->
+    <!-- Container for Flip Cards -->
+    <div class="container-fluid">
+        @if(movies.length > 0)
+        <br>
+        <strong style="font-size: 25px">All Movies</strong>
+        <div class="row">
+            @each(movie in movies)
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{{ movie.posterImage }}" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>{{ movie.name }}</h1> 
+                        <p>{{ movie.director }}</p> 
+                        <p>{{ movie.language }}</p>
+                        <button class="btn btn-default"><a href="/movies/{{ movie._id }}">Know More</a></button>
+                    </div>
+                </div>
+            </div>
+            @endeach
+        </div>
+        @endif
+        
+        @if(nowShowingMovies.length > 0)
+        <div id="now"></div>
+        <br>
+        <strong style="font-size: 25px">Now Showing</strong>
+        <span style="float:right;">
+            <a href="/nowshowing"><u>View All</u></a>
+        </span>
+        <div class="row">
+            @each(movie in nowShowingMovies)
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{{ movie.posterImage }}" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>{{ movie.name }}</h1> 
+                        <p>{{ movie.director }}</p> 
+                        <p>{{ movie.language }}</p>
+                        <button class="btn btn-default"><a href="/movies/{{ movie._id }}">Know More</a></button>
+                    </div>
+                </div>
+            </div>
+            @endeach
+        </div>
+        @endif
+        
+        @if(comingSoonMovies.length > 0)
+        <div id="soon"></div>
+        <br>
+        <strong style="font-size: 25px">Coming Soon</strong>
+        <span style="float:right;">
+            <a href="/comingsoon"><u>View All</u></a>
+        </span>
+        <div class="row">
+            @each(movie in comingSoonMovies)
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{{ movie.posterImage }}" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>{{ movie.name }}</h1> 
+                        <p>{{ movie.director }}</p> 
+                        <p>{{ movie.language }}</p>
+                        <button class="btn btn-default"><a href="/movies/{{ movie._id }}">Know More</a></button>
+                    </div>
+                </div>
+            </div>
+            @endeach
+
+        </div>
+        @endif
+    </div>
+    <!-- Container for Flip Cards Ends -->
+    <!-- ============================================================================================================= -->
+
+    @endsection

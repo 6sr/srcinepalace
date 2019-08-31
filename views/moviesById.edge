@@ -1,0 +1,81 @@
+@layout('layouts.app')
+<!-- oneMovie -->
+
+@section('styles')
+    <style>
+        .bg {
+            background: url('{{ oneMovie.posterImage }}') rgba(122,125,132,1);
+            background-blend-mode: multiply;
+
+            /* Full height */
+            height: 60vh;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .caption {
+            position: relative;
+            top: 70%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+        }
+
+        .caption span {
+            color: #fff;
+            font-size: 40px;
+        }
+
+    </style>
+@endsection
+
+@section('content')
+    <div class="bg">
+        <div class="caption">
+            <span>{{ oneMovie.name }}</span><br>
+            <i class="glyphicon glyphicon-calendar"></i>
+            {{ oneMovie.releaseDate.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }}
+            <i class="fas fa-clock"></i>
+            {{ oneMovie.lengthMinutes }} Minutes
+        </div>
+    </div>
+
+    <!-- ============================================================================================================= -->
+    <!-- Container for Flip Cards -->
+    <div class="container-fluid">
+        <br>
+        <strong style="font-size: 25px">About the Movie</strong>
+        <h3>Synopsis</h3>
+        <div class="row">
+                {{ oneMovie.description }}<br>
+                Director - {{ oneMovie.director }}<br>
+                Language - {{ oneMovie.language }}<br>
+        </div>
+        <h3>Show Timings</h3>
+        <table>
+        @each(show in shows)
+        <form action="/bookticket" method="POST"> 
+            <input type="text" name="movieshow_id" value="{{ show._id }}" style="display:none">
+            <tr>
+                <td>
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    {{ CinemaHalls[$loop.index].name }}
+                </td><td>
+                    <i class="fas fa-clock"></i>
+                    {{ show.start_time.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }}
+                    {{ show.start_time.toLocaleTimeString() }}
+                </td><td>
+                    <button class="btn btn-primary">Book Now</button>
+                </td>
+            </tr>
+        </form>
+        @endeach
+        </table>
+                
+    </div>
+    <!-- Container for Flip Cards Ends -->
+    <!-- ============================================================================================================= -->
+    @endsection

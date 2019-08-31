@@ -1,0 +1,33 @@
+@layout('layouts.app')
+
+
+@section('content')
+
+    <!-- ============================================================================================================= -->
+    <!-- Container for Flip Cards -->
+    <div class="container-fluid">
+        <br>
+        <strong style="font-size: 25px">Cinema Halls</strong>
+        @if(CinemaHalls.length > 0)
+        <div class="row">
+            @each(hall in CinemaHalls)
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{{ hall.Image }}" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>{{ hall.name }}</h1> 
+                        <p>{{ hall.address }}</p> 
+                    </div>
+                </div>
+            </div>
+            @endeach
+        </div>
+        @endif
+
+    
+    </div>
+    <!-- Container for Flip Cards Ends -->
+    <!-- ============================================================================================================= -->
+    @endsection
