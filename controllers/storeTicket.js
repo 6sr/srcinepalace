@@ -14,15 +14,25 @@ module.exports = (req,res) => {
     // Calculating price of tickets
     var seatArray = bookingObj["seats"];
     var price = 100
-    for(var i = 0;i < seatArray.length;i++) {
-        var curr = Math.trunc((seatArray[i] - 1) / 20) + 1;
-        price += curr * 100;
+    if (seatArray === undefined || seatArray.length == 0) {
+        req.flash('bookingErrors', 'Could not book your ticket')
+
+        return res.redirect('/movies')
+    }
+    else {
+        for(var i = 0;i < seatArray.length;i++) {
+            var curr = Math.trunc((seatArray[i] - 1) / 20) + 1;
+            price += curr * 100;
+        }
     }
     bookingObj["price"] = price;
     
     // Storing ticket details in database
     userBooking.create(req.body, (error, user) => {
         if(error) {
+            const bookingErrors = Object.keys(error.errors).map(key => error.errors[key].message)
+            req.flash('bookingErrors', bookingErrors)
+
             return res.redirect('/movies')
         }
         writeToPDF(user, () => {

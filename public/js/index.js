@@ -2,15 +2,12 @@ window.onscroll = function() {myFunction()};
 
 function myFunction() {
     if(window.scrollY == 0) {
+        // Removes arraw when on top of page
         document.getElementById("bounceDoubleArrow").style.display = "none";
     }
     else {
+        // Shows arraw when not on top of page
         document.getElementById("bounceDoubleArrow").style.display = "inline";
     }
 }
 
-// var footerElement = document.getElementsByTagName("footer")[0];
-// var bottom = $(window).height();
-// console.log(bottom);
-// footerElement.style.height = "10px";
-// footerElement.offsetTop = (bottom).toString() + "px";

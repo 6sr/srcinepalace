@@ -15,7 +15,13 @@
     <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-        
+                    @if(errors.length > 0)
+                    <ul class="list-group">
+                        @each(error in errors)
+                            <li class="list-group-item text-danger">{{ error }}</li>
+                        @endeach
+                    </ul>
+                    @endif
         
                     <!-- <form action="/users/register" method="POST" enctype="multipart/form-data">  -->
                     <form action="/users/signup" method="POST"> 
@@ -24,7 +30,7 @@
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>Username</label>
-                                <input type="text" name="username" class="form-control" placeholder="Username ...">
+                                <input type="text" name="username" value = "{{ data.username || '' }}" class="form-control" placeholder="Username ...">
                             </div>
                         </div>
                         <hr>
@@ -32,7 +38,7 @@
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>Email</label>
-                                <input type="email" name="email" autocomplete="new-password" class="form-control" placeholder="Email ...">
+                                <input type="email" name="email" value = "{{ data.email || '' }}" autocomplete="new-password" class="form-control" placeholder="Email ...">
                             </div>
                         </div>
                         <hr>
@@ -40,20 +46,15 @@
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>Password</label>
-                                <input type="password" name="password" class="form-control" placeholder="Password ...">
+                                <input type="password" name="password" value = "{{ data.password || '' }}" class="form-control" placeholder="Password ...">
                             </div>
                         </div>
                         <hr>
-                        <!--
-                        <div class="form-group-5">
-                                <input type="file" name="image" class="form-control-file">
-                        </div>
-                        -->
                     
                         <div class="form-group my-4 text-center">
                             <button class="btn btn-primary">Sign Up</button>
                         </div>
-                        <hr>
+                        <hr><br>
                     </form>
                 </div>
             </div>

@@ -20,11 +20,17 @@ module.exports = (req, res) => {
                     res.redirect('/')
                 }
                 else {
+                    // Storing error using req.flash
+                    req.flash('loginErrors', 'Incorrect Username or Password')
+
                     res.redirect('/signin')
                 }
             })
         }
         else {
+            // Storing error using req.flash
+            req.flash('loginErrors', 'Incorrect Username or Password')
+
             return res.redirect('/signin')
         }
     })

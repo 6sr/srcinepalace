@@ -17,7 +17,6 @@ const bodyParser = require('body-parser')
 
 // ============================================ Importing module for database ============================================
 const mongoose = require('mongoose')
-// const post = require('./database/models/post')
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true })
 
 // ============================================ Importing module for user session ============================================
@@ -25,6 +24,9 @@ const expressSession = require('express-session')
 
 // ================================= Importing module for storing user session in database ===================================
 const connectMongo = require('connect-mongo')
+
+// ============================================ Importing module for displaying errors for single request ====================
+const connectFlash = require('connect-flash')
 
 // ============================================ Importing Controllers ============================================
 const homePageController = require('./controllers/homePage')
@@ -52,7 +54,8 @@ const storeUserController = require('./controllers/storeUser')
 const supportPageController = require('./controllers/supportPage')
 
 const aboutUsController = require('./controllers/aboutUsPage')
-// ============================================ Using  ============================================
+
+// =================================== Using public directory for stati files ==============================
 app.use(express.static('public'))
 
 app.use(expressEdge)
@@ -65,7 +68,7 @@ app.use(expressSession({
     })
 }))
 
-// app.use(connectFlash())
+app.use(connectFlash())
 
 // ============================================ Using Middleware ============================================
 const authMiddleware = require('./middleware/auth')

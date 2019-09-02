@@ -3,6 +3,7 @@ const movie = require('../database/models/Movies')
 
 module.exports = async (req,res) => {
     const searchQuery = req.query.searchQuery
+    // get list of halls where expression present in address or name
     const cinemaHallsQuery = [
         {
             name : new RegExp(searchQuery, 'i')
@@ -11,6 +12,7 @@ module.exports = async (req,res) => {
             address : new RegExp(searchQuery, 'i')
         }
     ]
+    // get list of movie where expression present in name, description, director name, language
     const moviesQuery = [
         {
             name : new RegExp(searchQuery, 'i')
@@ -27,6 +29,7 @@ module.exports = async (req,res) => {
     ]
     const CinemaHalls = await cinemaHall.find({"$or": cinemaHallsQuery}).sort({name: 1});
     const Movies = await movie.find({"$or": moviesQuery}).sort({name: 1});
+    // Passing variabls to edge template
     res.render('search', {
         searchQuery,
         CinemaHalls,

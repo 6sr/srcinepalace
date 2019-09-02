@@ -1,5 +1,8 @@
 
 module.exports = async (req,res) => {
-    res.render('signIn')
+    // Sending error stored using req.flash
+    res.render('signIn', {
+        errors: req.flash('loginErrors'),
+    })
 };
 
